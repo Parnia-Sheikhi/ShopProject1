@@ -1,0 +1,20 @@
+﻿@model List<string>
+
+<ul>
+    <li>
+        <a asp-action="Index" asp-controller="Home">
+            همه
+        </a>
+    </li>
+</ul>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-action="Index" asp-controller="Home" asp-route-category="@item">
+                @item
+            </a>
+        </li>
+    }
+</ul>
+

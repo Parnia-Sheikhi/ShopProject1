@@ -1,0 +1,43 @@
+﻿@model HomeViewModel
+@{
+    ViewBag.Title = "صفحه اصلی";
+}
+
+<section>
+    <div class="container">
+        <div class="sidebar">
+            <h2 class="subject">دسته بندی محصولات</h2>
+            <div class="category-products">
+                @await Component.InvokeAsync("Category")
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>لیست محصولات</h2>
+            <div class="features_items">
+                @foreach (var item in Model.Result.Items)
+                {
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo ">
+                                <img src="@Url.Content("~/images/" + item.ImageUrl)" alt="">
+                                <h2>@item.Price</h2>
+                                <p>@item.Name</p>
+
+                                <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.ProductID" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn  add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبد</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <nav page-model="@Model.Result.PagingData" page-action="Index" page-controller="Home" page-category="@Model.Category"></nav>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+</section>

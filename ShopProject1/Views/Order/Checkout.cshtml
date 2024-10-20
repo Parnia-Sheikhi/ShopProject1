@@ -1,0 +1,44 @@
+﻿@model Order
+
+<section id="cart_items">
+    <div class="container">
+        <div class="cart_info">
+            <div class="description">
+                <h2>تکمیل فرایند خرید</h2>
+                <p>لطفا مشخصات کامل خود به همراه آدرس دقیق پستی را ثبت نمایید</p>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-controller="Order" asp-action="Checkout" method="post">
+                <h3>دریافت کننده</h3>
+                <div class="form-group">
+                    <label>نام:</label><input asp-for="Name" class="form-control" />
+                </div>
+                <h3>آدرس</h3>
+                <div class="form-group">
+                    <label>آدرس:</label><input asp-for="Address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>شماره تماس:</label><input asp-for="Phone" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>شهر:</label><input asp-for="City" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>استان:</label><input asp-for="State" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>کشور:</label><input asp-for="Country" class="form-control" />
+                </div>
+                <h3>گزینه‌ها:</h3>
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="GiftWrap" /> آیا یک هدیه است؟
+                    </label>
+                </div>
+                <div class=" form-group text-center">
+                    <input class="btn btn-primary" type="submit" value="تکمیل سفارش" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

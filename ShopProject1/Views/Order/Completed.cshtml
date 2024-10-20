@@ -1,0 +1,17 @@
+﻿@model Order
+
+<section id="cart_items">
+    <div class="container">
+        <div class="cart_info">
+            <div class="description">
+                <h2>از خرید شما سپاسگزاریم</h2>
+                <p>سفارش شما با شماره @TempData.Peek("OrderId") و مبلغ @TempData.Peek("Price") به ثبت رسید. جهت پرداخت مبلغ روی دکمه پرداخت کلیک نمایید</p>
+                <form asp-action="Pay" asp-controller="Payment" method="post">
+                    <input type="hidden" value="@TempData.Peek("OrderId")" name="orderId" />
+                    <input type="hidden" value="@TempData.Peek("Price")" name="price" />
+                    <input type="submit" value="پرداخت" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

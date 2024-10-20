@@ -1,0 +1,69 @@
+﻿@model List<Cart>
+@{
+    ViewBag.Title = "سبد خرید";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="cart_info">
+            <table class="table">
+                <thead>
+                    <tr class="cart_menu">
+                        <td>محصول</td>
+                        <td>توضیحات</td>
+                        <td>قیمت</td>
+                        <td>تعداد</td>
+                        <td>جمع</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href="#"><img src="@string.Format("imgs/{0}",item.Product.ImageUrl)" alt="" width="110"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@item.Product.Name </a></h4>
+                                <p>کد کالا: @item.Product.ProductID</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@string.Format("{0} هزار تومان", item.Product.Price)
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a class="cart_quantity_up" href=""> + </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down" href=""> - </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@string.Format("{0} هزار تومان", item.Quantity * item.Product.Price)</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" asp-action="RemoveFromCart" asp-controller="Cart" asp-route-productId="@item.Product.ProductID" asp-route-returnUrl="@ViewBag.ReturnUrl"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-primary" href="@ViewBag.ReturnUrl">ادامه خرید</a>
+                        </td>
+                        <td colspan="3">
+                            <a class="btn btn-primary" asp-action="Checkout" asp-controller="Order">
+                                تکمیل فرایند خرید
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Product>
+
+<p>
+    <a asp-action="Create" asp-controller="Product" class="btn btn-success">ثبت کالای جدید</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/images/"+item.ImageUrl)" class="img img-responsive" />
+
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Product" asp-route-Id="@item.ProductID" class="btn btn-info">ویرایش</a>
+                    
+                    <a asp-action="Delete" asp-controller="Product" asp-route-Id="@item.ProductID" class="btn btn-danger" onclick="return confirm('از حذف این کالا مطمئن هستید؟')">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
